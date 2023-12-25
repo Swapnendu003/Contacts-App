@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import { IoSearchOutline } from "react-icons/io5";
 import { FaPlusCircle } from "react-icons/fa";
+import { collection, getDocs } from "firebase/firestore"
+import { db } from "./config/Firebase"
+
+import ContactCard from './components/ContactCard';
 
 
 
@@ -11,6 +15,22 @@ function App() {
 const [contacts, setContacts] = useState([])
 useEffect (() => {
   const getContacts = async () =>{
+
+try {
+  const contactsRef = collection (db, "contacts")
+  const contactsSnap = await getDocs (contactsRef)
+  const contactLists = contactsSnap.docs.map((doc) => {
+    return{
+      id: doc.id,
+      ...doc.data()
+    }
+  })
+setContacts(contactLists)
+  
+} catch (error) {
+  console.log(error)
+  
+}
 
   }
   getContacts()
@@ -26,6 +46,11 @@ useEffect (() => {
         <div className=' text-white text-4xl cursor-pointer'>
           <FaPlusCircle />
         </div>
+      </div>
+      <div className='mt-4'>
+        {contacts.map((contact)=>(
+<ContactCard key= {contact.id} contact= {contact} />
+        ))}
       </div>
     </div>
 
