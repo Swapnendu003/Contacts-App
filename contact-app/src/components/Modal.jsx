@@ -9,8 +9,8 @@ const Modal = ({ onClose, isOpen, children }) => {
 
       {isOpen && (
         <> 
-        <div className=' min-h-[200px] max-w-[80%] bg-white relative z-50 m-auto'>
-          <div className=' flex justify-end p-4'>
+        <div className=' min-h-[200px] max-w-[80%] bg-white relative z-50 m-auto p-4'>
+          <div className=' flex justify-end'>
           <RxCross1 onClick= {onClose} className=' text-2xl cursor-pointer'/>
           </div>
           {children}

@@ -8,6 +8,7 @@ import { db } from './config/Firebase';
 
 import ContactCard from './components/ContactCard';
 import Modal from './components/Modal';
+import AddDeleteUpdate from './components/AddDeleteUpdate';
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -59,9 +60,7 @@ function App() {
           ))}
         </div>
       </div>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        HI
-      </Modal>
+<AddDeleteUpdate isOpen={isOpen} onClose={onClose}/>
     </>
   );
 }
