@@ -9,18 +9,11 @@ import { db } from './config/Firebase';
 import ContactCard from './components/ContactCard';
 import Modal from './components/Modal';
 import AddDeleteUpdate from './components/AddDeleteUpdate';
+import useDisclose from './hooks/useDisclose';
 
 function App() {
   const [contacts, setContacts] = useState([]);
-  const [isOpen, setOpen] = useState(false);
-
-  const onOpen = () => {
-    setOpen(true);
-  };
-
-  const onClose = () => {
-    setOpen(false);
-  };
+  const {isOpen, onOpen, onClose} = useDisclose ()
 
   useEffect(() => {
     const getContacts = async () => {
